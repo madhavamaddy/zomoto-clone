@@ -6,7 +6,7 @@ const mongoose = require('mongoose');
 const routes = require('./Routers/index');
 
 const host = "localhost";
-const port = 8900;
+const port = process.env.PORT || 8900;
 // MogngoDB connecting string
 // const uri = "mongodb+srv://client:client2021@cluster0.40etm.mongodb.net/DB-1?retryWrites=true&w=majority";
 const uri = "mongodb+srv://Zoufisha:Zoufi2021@cluster0.40etm.mongodb.net/DB-1?retryWrites=true&w=majority";
@@ -29,7 +29,7 @@ app.use('/',routes);
 // Connect to Database and starting server
 mongoose.connect(uri,{useNewUrlParser: true, useUnifiedTopology: true}).
     then(() => {
-        app.listen(process.env.PORT || 8900,host,() => {
+        app.listen(port,host,() => {
             console.log(`Server running at ${host}:${port}`);
         });
     }).
